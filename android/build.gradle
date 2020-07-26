@@ -36,3 +36,24 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+
+
+
+
+// for crop image picker        sujeet mishra
+allprojects {
+    repositories {
+      mavenLocal()
+      jcenter()
+      maven { url "$rootDir/../node_modules/react-native/android" }
+
+      // ADD THIS
+      maven { url 'https://maven.google.com' }
+
+      // ADD THIS
+      maven { url "https://www.jitpack.io" }
+    }
+}
+
+
+

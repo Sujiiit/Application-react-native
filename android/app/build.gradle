@@ -224,3 +224,42 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+
+
+
+
+
+
+
+// second thing for crop image picker sujeet mishra
+
+ android {
+    ...
+
+    defaultConfig {
+        ...
+        vectorDrawables.useSupportLibrary = true
+        ...
+    }
+    ...
+}
+
+
+
+// some thing also for it
+
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    ...
+    
+    defaultConfig {
+      ...
+      targetSdkVersion 27
+      ...
+    }
+    ...
+}

@@ -1,39 +1,36 @@
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Text,View } from 'react-native';
+
+
+import { createAppContainer                } from 'react-navigation';
+import { NavigationContainer              } from '@react-navigation/native';
+import { createStackNavigator             } from '@react-navigation/stack' ;
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+     
+     // vector-icons files 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5           } from '@expo/vector-icons';
+import { Feather                } from '@expo/vector-icons';
+import { FontAwesome            } from '@expo/vector-icons';
 
-// import { createStackNavigator } from 'react-navigation-stack';
-import { createStackNavigator } from 'react-navigation-stack';
-import {createAppContainer } from 'react-navigation';
 
-import Home from './Home';
+
+    // Bottom tabs navigator files
+import Home     from './Home';
 import Discover from './Discover';
-import Plus from './Plus';
-import Inbox from './Inbox';
-import Me from './Me'
- 
+import Plus     from './Plus';
+import Inbox    from './Inbox';
+import Me       from './Me'
+// import Welcome  from './Welcome'  // Eternal 
+  
+  
+   // Home Stack-tab navigator files
+import UserProfile  from './Userprofile';
 
 
 const Tab = createMaterialBottomTabNavigator();
-
-import Welcome from './Welcome'
-
-
-
-const screensbar = {
-    Me:   { screen: Me},
-}
-
-
-const stacker = createStackNavigator(screensbar);
-const final = createAppContainer(stacker);
-
 
 
 function MyTabs({navigation}) {
@@ -48,7 +45,7 @@ function MyTabs({navigation}) {
      
     <Tab.Screen
         name="Home"
-        component={Home}
+        component={Homestackscreen}
         options={{
           tabBarLabel: 'Home',
           tabBarColor: 'black',
@@ -98,12 +95,10 @@ function MyTabs({navigation}) {
       <Tab.Screen
         name="Me"
         component={Me}
-        navigation={navigation}
         options={{
           tabBarLabel: 'Me',
           tabBarColor: 'black',
           tabBarIcon: ({ color }) => (      
-            // <Entypo name="squared-plus" />
             <FontAwesome name="user" color={color} size={27} />
           ),
         }}
@@ -121,3 +116,31 @@ export default function App()
              </NavigationContainer>
            );
   }
+
+
+
+
+
+/// import Mejs from './Welcome';
+
+// const MeStack = createStackNavigator();
+
+// function MeStackScreen() {
+//   return (
+//     <MeStack.Navigator>
+//       <MeStack.Screen name="Home" component={Me} />
+//       <MeStack.Screen name="Welcome" component={Mejs} />
+//     </MeStack.Navigator>
+//   );
+// }
+
+const Homestack = createStackNavigator();
+ 
+ function Homestackscreen()  {
+  return (
+   <Homestack.Navigator  screenOptions={{ headerShown: false}}>
+      <Homestack.Screen name='Home' component={Home} />
+      <Homestack.Screen name='Userprofile' component={UserProfile}     />
+   </Homestack.Navigator>
+  );
+ }

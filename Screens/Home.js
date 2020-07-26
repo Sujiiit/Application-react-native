@@ -40,7 +40,7 @@ export default function Home({navigation}) {
     </View>
 
     <View style={styles.middle}>
-        <TouchableOpacity onPress={() => navigation.navigate('Signin')} >
+        <TouchableOpacity onPress={() => navigation.navigate('Userprofile')} >
         <FontAwesome name='circle-thin' color='pink' size={60} style={styles.logo} />
         </TouchableOpacity>
 
@@ -79,7 +79,7 @@ export default function Home({navigation}) {
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-     backgroundColor: 'orange'
+     backgroundColor: '#3f25b0'
     },
     header: {
       justifyContent: 'center',

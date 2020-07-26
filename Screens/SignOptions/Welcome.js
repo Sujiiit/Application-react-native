@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,StyleSheet,Text,Image,TouchableOpacity,Button,Dimensions}  from 'react-native';
+import { View,StyleSheet,Text,Image,TouchableOpacity,Button,Dimensions,StatusBar}  from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import * as Animatable from 'react-native-animatable';
@@ -11,7 +11,7 @@ import * as Animatable from 'react-native-animatable';
       <View style={styles.container}>
           <View style={styles.header}>
               <Animatable.Image animation='bounceIn'
-                style={styles.logo}  source={require('../Pictures/logo1.png')}  resizeMode='stretch' />
+                style={styles.logo}  source={require('../../Pictures/logo1.png')}  resizeMode='stretch' />
           </View> 
 
           <Animatable.View animation='fadeInUpBig' style={styles.footer}>
@@ -20,7 +20,7 @@ import * as Animatable from 'react-native-animatable';
               <Text style={styles.text}>Let's get started</Text>
      
                   <TouchableOpacity  style={styles.button}   >
-                  <Icon style={ styles.buttontext} name="rocket" size={40} color="white"  onPress={() => console.log(navigation)} />
+                  <Icon style={ styles.buttontext} name="rocket" size={40} color="white"  onPress={() => navigation.navigate('SignIn')} />
                   </TouchableOpacity> 
               </Animatable.View> 
       </View>
@@ -33,12 +33,14 @@ import * as Animatable from 'react-native-animatable';
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#f1f2f4',
+      backgroundColor: '#3f51b5',
     },
     header: {
         flex: 2,
         justifyContent: 'center',
-        alignItems: "center"
+        alignItems: "center",
+         backgroundColor: '#3f51b5'
+        
     },
     footer: {
         flex: 2,
@@ -54,13 +56,15 @@ import * as Animatable from 'react-native-animatable';
 
     },
     title: {
-        color: '#05375a',
+        // color: '#05375a',
+        color: 'white',
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 10,
     },
     text: {
-        color: 'grey',
+        // color: 'grey',
+        color: 'white',
         fontSize: 18,
         marginLeft: 2
     },
@@ -70,7 +74,7 @@ import * as Animatable from 'react-native-animatable';
           
     },
     buttontext: {
-        backgroundColor: 'black',
+        backgroundColor: '#f5a623',
         height: 70,
         width: 70,
         borderRadius: 50,

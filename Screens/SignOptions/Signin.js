@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { 
     View, 
     Text, 
     TouchableOpacity, 
     TextInput,
     Platform,
-    StyleSheet ,
+    StyleSheet,
     StatusBar,
     Alert,
     Button,
     ScrollView,
-    Dimensions
+    Dimensions,
+    AsyncStorage
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
-// import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -47,17 +47,44 @@ const Signin = ({navigation}) => {
 
   
 
+
+  const save = async() => {
+    try {
+     await AsyncStorage.setItem('email' , Valdata.Email)
+     await AsyncStorage.setItem('Password' , Valdata.Password)
+       }
+    catch(err) {  alert(err) }
+  }
+
+
+
+  const load = async() => {
+    try {
+     let email = await AsyncStorage.getItem('email');
+     let pass = await AsyncStorage.getItem('Password');
+     if(email !== null) {
+        Changedata({  ...Valdata, Email: email,Password: pass  })
+     }
+    }
+    catch(err) {
+      alert(err)
+    }
+  }
+
+  useEffect(() => {
+    load();
+     },[]);
+
+
     return (
-      <ScrollView>
+      
       <View  style={styles.container}  >
          
           <View style={styles.header}>
-             <Text style={styles.text_header}>Sign In </Text>
-             <Animatable.Image animation='bounceIn'
-                style={styles.logo}  source={require('../Pictures/logo1.png')}  resizeMode='stretch' />
+             <Text style={styles.text_header}>Sign In </Text>   
           </View>
           
-          <Animatable.View  animation='fadeInUpBig' style={styles.footer}>
+           <Animatable.View  animation='fadeInUpBig' style={styles.footer}>
 
              <Text style={styles.text_footer}>Email</Text>
              <View style={styles.action}>
@@ -78,22 +105,29 @@ const Signin = ({navigation}) => {
              </View>
 
              <Animatable.View animation = 'bounceIn'  style={styles.button}>
-                <TouchableOpacity style={styles.signIn}>
+                <TouchableOpacity style={styles.signIn} onPress={  save }>
                     <Text style={styles.textSign}>Sign In</Text>
                 </TouchableOpacity>
              </Animatable.View>
 
+
+             <TouchableOpacity onPress={() => navigation.navigate('Forgot')}>
+             <Text style={styles.Forget}>{Valdata.Email} { Valdata.Password}</Text>
+             </TouchableOpacity>
+             
+
+
              <Text style={styles.or}>-------OR-------</Text>
-             <Text  style={styles.already}>Don't have an account</Text>
+             <Text  style={styles.already} > Don't have an account </Text>
                 <Animatable.View animation = 'bounceIn'  style={styles.button}>
                     <TouchableOpacity style={styles.signIn}>
                        <Text onPress={() => navigation.push('SignUp')} style={styles.textSign}>Sign Up</Text>
                     </TouchableOpacity>
                 </Animatable.View>
-          </Animatable.View>  
+          </Animatable.View>   
           
       </View>
-      </ScrollView>
+  
     );
 };
 
@@ -102,29 +136,31 @@ export default Signin;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#f1f2f4',
+      backgroundColor: '#3f51b5',
 
     
     },
     header: {
         flex: 1,
         paddingHorizontal: 20,
-        // paddingBottom: 50,
-         alignItems: 'center'
+        alignItems: 'center',
+
     },
     footer: {
-        flex: 3,
+        flex: 4,
         borderTopRightRadius: 30,
-        paddingHorizontal: 20,
-        paddingVertical: 30
+        borderTopLeftRadius: 30,
+        paddingHorizontal: 30,
+        paddingTop: 50,
+        backgroundColor: 'white',
     },
+
     text_header: {
-        color: '#fff',
+        color: 'white',
         fontWeight: 'bold',
         fontSize: 20,
-        color: 'black',
         textAlign: 'center',
-        marginTop: 25
+        marginTop: 35
     },
     text_footer: {
         color: '#05375a',
@@ -160,7 +196,8 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         marginTop: 40,
-        backgroundColor: '#0070c6c9',
+        backgroundColor: '#f5a623',
+        backgroundColor: '#3f51b5',
         borderRadius: 25,
         marginLeft: 20,
         marginRight: 20,
@@ -178,17 +215,25 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
+    Forget: {
+         marginVertical: 20,
+         textAlign: 'center',
+         color: '#f5a623'
+    },
     or: {
         marginTop: 15,
         textAlign: 'center',
-        marginBottom: -15
+        marginBottom: -15,
+        color: '#f5a623',
+        fontWeight: 'bold'
     },
     already:{
         marginTop: 25,
         textAlign: 'center',
         marginBottom: -30,
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#f5a623'
     },
     logo: {
         borderRadius: 65,
@@ -197,3 +242,10 @@ const styles = StyleSheet.create({
        marginTop: 5
     }
   });
+
+
+
+
+// image if needed
+ /// <Animatable.Image animation='bounceIn'
+             //    style={styles.logo}  source={require('../Pictures/logo1.png')}  resizeMode='stretch' />

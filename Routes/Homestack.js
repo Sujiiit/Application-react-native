@@ -1,22 +1,46 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Welcome from '../Screens/Welcome';
-import Signin from '../Screens/Signin';
-import Signup from '../Screens/Signup';
-import Home from '../Screens/Home';
-import Main from '../Screens/Main';
 
-const screens = {
-    Main:    { screen: Main,      navigationOptions: { headerShown: null }},
-    Home:    { screen: Home,      navigationOptions: { headerShown: null }},
-    Welcome: { screen: Welcome,   navigationOptions: { headerShown: null }},
-    SignIn:  { screen: Signin,    navigationOptions: { headerShown: null }},
-    SignUp:  { screen: Signup,    navigationOptions: { headerShown: null }},   
+//    Welcome Tabs
+import Signin from '../Screens/SignOptions/Signin';
+import Signup from '../Screens/SignOptions/Signup';
+import Welcome from '../Screens/SignOptions/Welcome';
+import Forgot from '../Screens/SignOptions/fotgotpass'
 
+
+    //    function Authcheck() {
+    //    const [IsLoading,setIsLoading] = useState(true);
+    //    let screens;
+    //    (IsLoading) ? screens =  Welscreens : screens = Authscreens;
+ 
+      
+    //    return (
+       
+    //    );
+      
+
+    // }
+
+const Welscreens = {
+	Welcome: { screen: Welcome,   navigationOptions: { headerShown: null }},
+	SignIn:  { screen: Signin,    navigationOptions: { headerShown: null }},
+    SignUp:  { screen: Signup,    navigationOptions: { headerShown: null }},
+    Forgot:  { screen: Forgot,   navigationOptions: { headerShown: null  }},   
 }
 
 
-const stack = createStackNavigator(screens);
-export default createAppContainer(stack);
+
+import Main from '../Screens/Main';
+
+const Authscreens = {
+    Main:    { screen: Main,      navigationOptions: { headerShown: null }},
+
+}
+
+ // const stack = createStackNavigator(Welscreens);
+ // export const wel = createAppContainer(stack);
+
+  stack = createStackNavigator(Authscreens);
+ export default createAppContainer(stack);

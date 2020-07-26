@@ -8,7 +8,8 @@ import {
     StyleSheet ,
     StatusBar,
     Alert,
-    Button
+    Button,
+    ScrollView
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
@@ -16,6 +17,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 // import { useTheme } from 'react-native-paper';
 
 
@@ -25,6 +28,7 @@ const Signin = ({navigation}) => {
      Fullname: '', Email: '', emailinput: false, Password1: '', Password2: '',
       secureTextEntry1: false, secureTextEntry2: false,
      });
+     
      
      function handlename(value)
      {
@@ -72,11 +76,16 @@ const Signin = ({navigation}) => {
   
 
 return (
+    <ScrollView>
     <View  style={styles.container} > 
     {/* Main view container */}
 
         {/* Header section */}
         <View style={styles.header}>
+            <TouchableOpacity  onPress={ () =>  navigation.pop()}>
+            < MaterialCommunityIcons name='arrow-left-bold-hexagon-outline' color='#f5a623' size={35} />
+            </TouchableOpacity>
+        
         <Text style={styles.text_header}>Sign Up </Text> 
         </View>
         {/* Header section finished */}
@@ -147,7 +156,8 @@ return (
         </Animatable.View>  
          {/* Footer section finished */}
 
-    </View>  //   Main view container
+    </View>  
+    </ScrollView>
    );
 };
 
@@ -156,30 +166,35 @@ export default Signin;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#f1f2f4',
+    backgroundColor: '#3f51b5'
 
     
     },
     header: {
-        flex: 0.4,
-        paddingHorizontal: 20,
-        paddingBottom: 50,
-         alignItems: 'center'
+        flex: 0.9,
+        paddingHorizontal: 25,
+        paddingBottom: 30,
+         alignItems: 'center',
+         backgroundColor: '#3f51b5',
+         flexDirection: 'row',
+         marginTop: 30
     },
     footer: {
-        flex: 6.5,
-        // backgroundColor: '#fff',
+        flex: 8,
         borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
         paddingHorizontal: 20,
-        paddingVertical: 30
+        paddingVertical: 30,
+        backgroundColor: 'white',
+        paddingHorizontal: 30,
     },
     text_header: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 20,
-        color: 'black',
-        textAlign: 'center',
-        marginTop: 20
+        // textAlign: 'center',
+        marginLeft: 90,
+
     },
     text_footer: {
         color: '#05375a',
@@ -214,7 +229,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         marginTop: 30,
-        backgroundColor: '#0070c6c9',
+        backgroundColor: '#3f51b5',
         borderRadius: 25,
         marginLeft: 20,
         marginRight: 20,
@@ -235,13 +250,16 @@ const styles = StyleSheet.create({
     or: {
         marginTop: 15,
         textAlign: 'center',
-        marginBottom: -15
+        marginBottom: -15,
+        color: '#f5a623',
+        fontWeight: 'bold'
     },
     already:{
         marginTop: 25,
         textAlign: 'center',
         marginBottom: -20,
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#f5a623'
     }
   });
